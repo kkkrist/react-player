@@ -110,12 +110,12 @@ export class YouTube extends Component {
       return (
         <div style={style}>
           <iframe
-            height={height ? (height.includes('px') ? height.slice(0, -2) : height) : '100%'}
+            height={height ? (height.endsWith('px') ? height.slice(0, -2) : height) : '100%'}
             ref={this.ref}
             sandbox='allow-same-origin allow-scripts'
             src={embedUrl}
             style={this.props.style}
-            width={width ? (width.includes('px') ? width.slice(0, -2) : width) : '100%'}
+            width={width ? (width.endsWith('px') ? width.slice(0, -2) : width) : '100%'}
           />
         </div>
       )
