@@ -91,11 +91,39 @@ export class YouTube extends Component {
       height: '100%',
       ...this.props.style
     }
-    return (
-      <div style={style}>
-        <div ref={this.ref} />
-      </div>
-    )
+
+    if (this.props.config.youtube.sandbox) {
+      const {
+        config: { youtube: { playerVars } },
+        controls,
+        loop,
+        height,
+        url,
+        width
+      } = this.props
+      const id = url.match(MATCH_URL)[1]
+      let embedUrl = `https://www.youtube.com/embed/${id}?enablejsapi=1&origin=${window.location.origin}&controls=${controls | 0}&loop=${loop | 0}`
+      Object.keys(playerVars).forEach(key => {
+        embedUrl += `&${key}=${playerVars[key]}`
+      })
+
+      return (
+        <iframe
+          height={height}
+          ref={this.ref}
+          sandbox='allow-same-origin allow-scripts'
+          src={embedUrl}
+          style={this.props.style}
+          width={width}
+        />
+      )
+    } else {
+      return (
+        <div style={style}>
+          <div ref={this.ref} />
+        </div>
+      )
+    }
   }
 }
 

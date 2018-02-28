@@ -20,15 +20,16 @@ const MULTIPLE_SOURCES = [
 
 class App extends Component {
   state = {
-    url: null,
-    playing: true,
-    volume: 0.8,
-    muted: false,
-    played: 0,
-    loaded: 0,
     duration: 0,
+    loaded: 0,
+    loop: false,
+    muted: false,
     playbackRate: 1.0,
-    loop: false
+    played: 0,
+    playing: true,
+    url: null,
+    volume: 0.8,
+    youtubeSandbox: false
   }
   load = url => {
     this.setState({
@@ -51,6 +52,9 @@ class App extends Component {
   }
   toggleMuted = () => {
     this.setState({ muted: !this.state.muted })
+  }
+  toggleYoutubeSandbox = () => {
+    this.setState({ youtubeSandbox: !this.state.youtubeSandbox })
   }
   setPlaybackRate = e => {
     this.setState({ playbackRate: parseFloat(e.target.value) })
@@ -102,7 +106,18 @@ class App extends Component {
     this.player = player
   }
   render () {
-    const { url, playing, volume, muted, loop, played, loaded, duration, playbackRate } = this.state
+    const {
+      duration,
+      loaded,
+      loop,
+      muted,
+      playbackRate,
+      played,
+      playing,
+      url,
+      volume,
+      youtubeSandbox
+    } = this.state
     const SEPARATOR = ' · '
 
     return (
@@ -111,26 +126,27 @@ class App extends Component {
           <h1>ReactPlayer Demo</h1>
           <div className='player-wrapper'>
             <ReactPlayer
-              ref={this.ref}
               className='react-player'
-              width='100%'
+              config={youtubeSandbox ? { youtube: { sandbox: true } } : undefined}
               height='100%'
-              url={url}
-              playing={playing}
               loop={loop}
-              playbackRate={playbackRate}
-              volume={volume}
               muted={muted}
-              onReady={() => console.log('onReady')}
-              onStart={() => console.log('onStart')}
-              onPlay={this.onPlay}
-              onPause={this.onPause}
               onBuffer={() => console.log('onBuffer')}
-              onSeek={e => console.log('onSeek', e)}
+              onDuration={this.onDuration}
               onEnded={this.onEnded}
               onError={e => console.log('onError', e)}
+              onPause={this.onPause}
+              onPlay={this.onPlay}
               onProgress={this.onProgress}
-              onDuration={this.onDuration}
+              onReady={() => console.log('onReady')}
+              onSeek={e => console.log('onSeek', e)}
+              onStart={() => console.log('onStart')}
+              playbackRate={playbackRate}
+              playing={playing}
+              ref={this.ref}
+              url={url}
+              volume={volume}
+              width='100%'
             />
           </div>
 
@@ -178,6 +194,14 @@ class App extends Component {
               </th>
               <td>
                 <input id='loop' type='checkbox' checked={loop} onChange={this.toggleLoop} />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label htmlFor='youtube-sandbox'>Sandbox YouTube</label>
+              </th>
+              <td>
+                <input id='youtube-sandbox' type='checkbox' checked={youtubeSandbox} onChange={this.toggleYoutubeSandbox} />
               </td>
             </tr>
             <tr>

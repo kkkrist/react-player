@@ -1,3 +1,5 @@
+(This fork adds a `sandbox` option for YouTube – see below)
+
 <h1 align='center'>
   ReactPlayer
 </h1>
@@ -126,7 +128,7 @@ Settings for each player live under different keys:
 
 Key | Options
 --- | -------
-`youtube` | `playerVars`: Override the [default player vars](https://developers.google.com/youtube/player_parameters?playerVersion=HTML5)<br />`preload`: Used for [preloading](#preloading)
+`youtube` | `playerVars`: Override the [default player vars](https://developers.google.com/youtube/player_parameters?playerVersion=HTML5)<br />`preload`: Used for [preloading](#preloading)<br />`sandbox`: Set to `true` to [sandbox](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-sandbox) iframe with minimal permissions (`allow-scripts` and `allow-same-origin`)
 `facebook` | `appId`: Your own [Facebook app ID](https://developers.facebook.com/docs/apps/register#app-id)
 `soundcloud` | `options`: Override the [default player options](https://developers.soundcloud.com/docs/api/html5-widget#params)<br />`preload`: Used for [preloading](#preloading)
 `vimeo` | `playerOptions`: Override the [default params](https://developer.vimeo.com/player/embedding#universal-parameters)<br />`preload`: Used for [preloading](#preloading)
