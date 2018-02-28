@@ -1,4 +1,4 @@
-(This fork adds a `sandbox` option for YouTube – see below)
+(This branch adds a `sandbox` option for YouTube – see below)
 
 <h1 align='center'>
   ReactPlayer
