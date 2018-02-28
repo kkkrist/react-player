@@ -108,14 +108,16 @@ export class YouTube extends Component {
       })
 
       return (
-        <iframe
-          height={height}
-          ref={this.ref}
-          sandbox='allow-same-origin allow-scripts'
-          src={embedUrl}
-          style={this.props.style}
-          width={width}
-        />
+        <div style={style}>
+          <iframe
+            height={height ? (height.includes('px') ? height.slice(0, -2) : height) : '100%'}
+            ref={this.ref}
+            sandbox='allow-same-origin allow-scripts'
+            src={embedUrl}
+            style={this.props.style}
+            width={width ? (width.includes('px') ? width.slice(0, -2) : width) : '100%'}
+          />
+        </div>
       )
     } else {
       return (
