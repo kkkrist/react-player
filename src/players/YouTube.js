@@ -94,17 +94,23 @@ export class YouTube extends Component {
 
     if (this.props.config.youtube.sandbox) {
       const {
-        config: { youtube: { playerVars } },
+        config: { youtube },
         controls,
         loop,
         height,
         url,
         width
       } = this.props
-      const id = url.match(MATCH_URL)[1]
-      let embedUrl = `https://www.youtube.com/embed/${id}?enablejsapi=1&origin=${window.location.origin}&controls=${controls | 0}&loop=${loop | 0}`
+      const playerVars = {
+        ...youtube.playerVars,
+        controls: controls | 0,
+        enablejsapi: 1,
+        loop: loop | 0,
+        origin: window.location.origin
+      }
+      const embedUrl = new URL('https://www.youtube.com/embed/' + url.match(MATCH_URL)[1])
       Object.keys(playerVars).forEach(key => {
-        embedUrl += `&${key}=${playerVars[key]}`
+        embedUrl.searchParams.set(key, playerVars[key])
       })
 
       return (
