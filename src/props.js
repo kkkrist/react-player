@@ -48,6 +48,9 @@ export const propTypes = {
     }),
     mixcloud: shape({
       options: object
+    }),
+    twitch: shape({
+      options: object
     })
   }),
   onReady: func,
@@ -66,7 +69,7 @@ export const defaultProps = {
   playing: false,
   loop: false,
   controls: false,
-  volume: 0.8,
+  volume: null,
   muted: false,
   playbackRate: 1,
   width: '640px',
@@ -133,6 +136,9 @@ export const defaultProps = {
       options: {
         hide_cover: 1
       }
+    },
+    twitch: {
+      options: {}
     }
   },
   onReady: function () {},

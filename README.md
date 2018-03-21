@@ -65,12 +65,12 @@ Prop | Description | Default
 `url` | The url of a video or song to play
 `playing` | Set to `true` or `false` to pause or play the media | `false`
 `loop` | Set to `true` or `false` to loop the media | `false`
-`controls` | Set to `true` or `false` to display native player controls<br />*Note: Vimeo, Twitch and Wistia player controls are not configurable and will always display* | `false`
-`volume` | Sets the volume of the appropriate player | `0.8`
-`muted` | Mutes the player | `false`
-`playbackRate` | Sets the playback rate of the appropriate player<br />*Note: Only supported by YouTube, Wistia, and file paths* | `1`
-`width` | Sets the width of the player | `640px`
-`height` | Sets the height of the player | `360px`
+`controls` | Set to `true` or `false` to display native player controls<br />&nbsp; ◦ &nbsp;Vimeo, Twitch and Wistia player will always display controls | `false`
+`volume` | Set the volume of the player, between `0` and `1`<br/>&nbsp; ◦ &nbsp;`null` uses default volume on all players [`#357`](https://github.com/CookPete/react-player/issues/357) | `null`
+`muted` | Mutes the player<br/>&nbsp; ◦ &nbsp;Only works if `volume` is set | `false`
+`playbackRate` | Set the playback rate of the player<br />&nbsp; ◦ &nbsp;Only supported by YouTube, Wistia, and file paths | `1`
+`width` | Set the width of the player | `640px`
+`height` | Set the height of the player | `360px`
 `style` | Add [inline styles](https://facebook.github.io/react/tips/inline-styles.html) to the root element | `{}`
 `progressInterval` | The time between `onProgress` callbacks, in milliseconds | `1000`
 `playsinline` | Applies the `playsinline` attribute where supported | `false`
@@ -133,6 +133,7 @@ Key | Options
 `wistia` | `options`: Override the [default player options](https://wistia.com/doc/embed-options#options_list)
 `mixcloud` | `options`: Override the [default player options](https://www.mixcloud.com/developers/widget/#methods)
 `dailymotion` | `params`: Override the [default player vars](https://developer.dailymotion.com/player#player-parameters)<br />`preload`: Used for [preloading](#preloading)
+`twitch` | `options`: Override the [default player options](https://dev.twitch.tv/docs/embed)
 `file` | `attributes`: Apply [element attributes](https://developer.mozilla.org/en/docs/Web/HTML/Element/video#Attributes)<br />`forceAudio`: Always render an `<audio>` element<br />`forceHLS`: Use [hls.js](https://github.com/video-dev/hls.js) for HLS streams<br />`forceDASH`: Always use [dash.js](https://github.com/Dash-Industry-Forum/dash.js) for DASH streams<br />`hlsOptions`: Override the [default `hls.js` options](https://github.com/video-dev/hls.js/blob/master/doc/API.md#fine-tuning)
 
 ##### Preloading
